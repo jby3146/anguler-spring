@@ -1,0 +1,45 @@
+<div class="wrapper">
+    <mat-card>
+        <mat-card-title>회원가입</mat-card-title>
+        <form [formGroup]="signUpForm" (ngSubmit)="submit()">
+          <p>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Email" formControlName="id">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <input type="password" matInput placeholder="Password" formControlName="password">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <input type="password" matInput placeholder="Confirm Password" formControlName="password_re">
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <input type="text" matInput placeholder="Name" formControlName="name">
+            </mat-form-field>
+          </p>
+          <p *ngIf="f.id.invalid &amp;&amp; (f.id.touched || f.id.dirty)" class="error">
+            Please enter valid email
+          </p>
+          <p *ngIf="f.password.invalid &amp;&amp; (f.password.touched || f.password.dirty) &amp;&amp; f.password.errors.required" class="error">
+              Password is required
+          </p>
+          <p *ngIf="f.password_re.invalid &amp;&amp; (f.password_re.touched || f.password_re.dirty) &amp;&amp; f.password_re.errors.required" class="error">
+              Password Re is required
+          </p>
+          <p *ngIf="signUpForm.hasError('notSame')" class="error">
+              Password is not same
+          </p>
+          <p *ngIf="f.name.invalid &amp;&amp; (f.name.touched || f.name.dirty) &amp;&amp; f.name.errors.required" class="error">
+              Name is required
+          </p>
+          <div class="button">
+              <button type="submit" mat-raised-button [disabled]="!signUpForm.valid" color="primary">가입</button>
+          </div>
+        </form>
+      </mat-card>
+</div>
